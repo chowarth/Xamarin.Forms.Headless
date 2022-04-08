@@ -16,9 +16,26 @@ namespace XF.Headless
             MockForms.Init();
 
             _app = appProvider.Invoke();
-            _app.Invoke("OnStart");
 
             // Hook into Xamarin.Forms messages for AlertArguments & ActionSheetArguments
+        }
+
+        /// <inheritdoc/>
+        public void OnStart()
+        {
+            _app.Invoke("OnStart");
+        }
+
+        /// <inheritdoc/>
+        public void OnSleep()
+        {
+            _app.Invoke("OnSleep");
+        }
+
+        /// <inheritdoc/>
+        public void OnResume()
+        {
+            _app.Invoke("OnResume");
         }
 
         /// <inheritdoc/>
