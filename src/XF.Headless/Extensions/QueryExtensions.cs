@@ -12,6 +12,10 @@ namespace XF.Headless.Extensions
             List<Element> results = new List<Element>();
             IEnumerable<Element> empty = Enumerable.Empty<Element>();
 
+            // Don't need do anything if the element isn't visible
+            if (element is VisualElement ve && !ve.IsVisible)
+                return results;
+
             if (predicate.Invoke(element))
                 results.Add(element);
 

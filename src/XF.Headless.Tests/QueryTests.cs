@@ -7,7 +7,7 @@ namespace XF.Headless.Tests
     public class QueryTests
     {
         [Fact]
-        public void QueryElementByAutomationId()
+        public void Query_ByAutomationId_ReturnsMultipleResults()
         {
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
@@ -19,7 +19,7 @@ namespace XF.Headless.Tests
         }
 
         [Fact]
-        public void QueryElementByText()
+        public void Query_ByText_ReturnsSingleResult()
         {
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
@@ -31,7 +31,19 @@ namespace XF.Headless.Tests
         }
 
         [Fact]
-        public void QueryElementByFormattedString()
+        public void Query_ParentIsVisibleFalse_ReturnsNoResults()
+        {
+            var app = HeadlessAppBuilder.Create()
+                .ForApplication(() => new SampleApp.App())
+                .Build();
+
+            IReadOnlyList<Element> results = app.Query("This label should not be found!");
+
+            Assert.Empty(results);
+        }
+
+        [Fact]
+        public void Query_ByFormattedString_ReturnsSingleResult()
         {
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
@@ -43,7 +55,7 @@ namespace XF.Headless.Tests
         }
 
         [Fact]
-        public void QueryTitleViewByText()
+        public void Query_ElementInTitleView_ReturnsSingleResult()
         {
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())

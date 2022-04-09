@@ -18,6 +18,9 @@
         <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
             <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" FontSize="36"/>
         </Frame>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0" IsVisible="False">
+            <Label Text="This label should not be found!" HorizontalTextAlignment="Center" FontSize="36"/>
+        </Frame>
         <Label AutomationId="TestAutomationId" Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
         <Label AutomationId="TestAutomationId" Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
         <Label AutomationId="TestAutomationId" IsVisible="False" Text="This label is not visible" FontSize="Title" Padding="30,10,30,10"/>

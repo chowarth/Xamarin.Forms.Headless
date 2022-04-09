@@ -6,10 +6,6 @@ namespace XF.Headless.Extensions
     {
         internal static bool Marked(this Element element, string marked)
         {
-            // Don't match if the element isn't visible
-            if (element is VisualElement ve && !ve.IsVisible)
-                return false;
-
             if (element.AutomationId == marked)
                 return true;
 
