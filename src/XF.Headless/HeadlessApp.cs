@@ -41,8 +41,9 @@ namespace XF.Headless
         /// <inheritdoc/>
         public IReadOnlyList<Element> Query(string marked)
         {
-            var top = _app.MainPage.Navigation.ModalStack.LastOrDefault() ?? _app.MainPage;
+            ArgumentNullException.ThrowIfNull(marked);
 
+            var top = _app.MainPage.Navigation.ModalStack.LastOrDefault() ?? _app.MainPage;
             return GetCurrentPage(top).QueryInternal(e => e.Marked(marked));
         }
 
