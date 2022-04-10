@@ -9,60 +9,75 @@ namespace XF.Headless.Tests
         [Fact]
         public void Query_ByAutomationId_ReturnsMultipleResults()
         {
+            // Arrage
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
                 .Build();
 
+            // Act
             IReadOnlyList<Element> results = app.Query("TestAutomationId");
 
+            // Assert
             Assert.Equal(2, results.Count);
         }
 
         [Fact]
         public void Query_ByText_ReturnsSingleResult()
         {
+            // Arrage
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
                 .Build();
 
+            // Act
             IReadOnlyList<Element> results = app.Query("Welcome to Xamarin.Forms!");
 
+            // Assert
             Assert.Equal(1, results.Count);
         }
 
         [Fact]
         public void Query_ParentIsVisibleFalse_ReturnsNoResults()
         {
+            // Arrage
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
                 .Build();
 
+            // Act
             IReadOnlyList<Element> results = app.Query("This label should not be found!");
 
+            // Assert
             Assert.Empty(results);
         }
 
         [Fact]
         public void Query_ByFormattedString_ReturnsSingleResult()
         {
+            // Arrage
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
                 .Build();
 
+            // Act
             IReadOnlyList<Element> results = app.Query("Learn more at https://aka.ms/xamarin-quickstart");
 
+            // Assert
             Assert.Equal(1, results.Count);
         }
 
         [Fact]
         public void Query_ElementInTitleView_ReturnsSingleResult()
         {
+            // Arrage
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
                 .Build();
 
+            // Act
             IReadOnlyList<Element> results = app.Query("TitleViewLabel");
 
+            // Assert
             Assert.Equal(1, results.Count);
         }
     }

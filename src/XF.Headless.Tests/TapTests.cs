@@ -5,6 +5,9 @@ namespace XF.Headless.Tests
 {
     public class TapTests
     {
+        // TODO: public void Tap_ElementIsNotFound_ThrowsInvalidOperationException()
+        // TODO: public void Tap_ElementIsNotTappable_ThrowsInvalidOperationException()
+
         [Fact]
         public void Tap_ElementCommandIsNull_ThrowsInvalidOperationException()
         {
