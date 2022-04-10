@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Mocks;
 using XF.Headless.Extensions;
@@ -47,6 +48,31 @@ namespace XF.Headless
             return GetCurrentPage(top).QueryInternal(e => e.Marked(marked));
         }
 
+        /// <inheritdoc/>
+        public void Tap(string marked)
+        {
+            // TODO: Alert dialogs/pickers etc
+            // TODO: If nothing is found, throw exception?
+            // TODO: What to do about GestureRecognisers as they can be attached to most elements?
+            // TODO: Handle Tapped events as well?
+            // TODO: How to handle multiple elements with the same ID e.g. in a list "cell"?
+
+            var element = Query(marked).FirstOrDefault();
+            switch (element)
+            {
+                case Button b:
+                    InvokeCommand(marked, b.Command, b.CommandParameter);
+                    break;
+
+                case ImageButton ib:
+                    InvokeCommand(marked, ib.Command, ib.CommandParameter);
+                    break;
+
+                default:
+                    throw new InvalidOperationException($"Element marked '{marked}' is not tappable.");
+            }
+        }
+
         private Page GetCurrentPage(Page page)
         {
             if (page is FlyoutPage fp)
@@ -62,6 +88,15 @@ namespace XF.Headless
                 return GetCurrentPage(pc.CurrentPage);
 
             return page;
+        }
+
+        private void InvokeCommand(string marked, ICommand command, object commandParameter)
+        {
+            if (command == null)
+                throw new InvalidOperationException($"Element marked '{marked}' is not tappable; '{nameof(command)}' is null.");
+
+            if (command.CanExecute(commandParameter))
+                command.Execute(commandParameter);
         }
     }
 }
