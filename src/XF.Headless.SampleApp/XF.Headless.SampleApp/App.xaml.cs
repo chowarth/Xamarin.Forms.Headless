@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using XF.Headless.SampleApp.Pages;
 
 namespace XF.Headless.SampleApp
 {
@@ -8,7 +9,6 @@ namespace XF.Headless.SampleApp
         {
             InitializeComponent();
 
-            //MainPage = new MainPage();
             MainPage = new NavigationPage(new MainPage());
         }
 

@@ -13,6 +13,7 @@ namespace XF.Headless.Tests
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
                 .Build();
+            app.Tap("Query Page");
 
             // Act
             IReadOnlyList<Element> results = app.Query("TestAutomationId");
@@ -28,6 +29,7 @@ namespace XF.Headless.Tests
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
                 .Build();
+            app.Tap("Query Page");
 
             // Act
             IReadOnlyList<Element> results = app.Query("Welcome to Xamarin.Forms!");
@@ -43,6 +45,7 @@ namespace XF.Headless.Tests
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
                 .Build();
+            app.Tap("Query Page");
 
             // Act
             IReadOnlyList<Element> results = app.Query("This label should not be found!");
@@ -58,6 +61,7 @@ namespace XF.Headless.Tests
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
                 .Build();
+            app.Tap("Query Page");
 
             // Act
             IReadOnlyList<Element> results = app.Query("Learn more at https://aka.ms/xamarin-quickstart");
@@ -73,6 +77,7 @@ namespace XF.Headless.Tests
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
                 .Build();
+            app.Tap("Query Page");
 
             // Act
             IReadOnlyList<Element> results = app.Query("TitleViewLabel");
