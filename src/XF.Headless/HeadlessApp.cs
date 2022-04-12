@@ -53,11 +53,13 @@ namespace XF.Headless
         {
             // TODO: Alert dialogs/pickers etc
             // TODO: If nothing is found, throw exception?
-            // TODO: What to do about GestureRecognisers as they can be attached to most elements?
-            // TODO: Handle Tapped events as well?
             // TODO: How to handle multiple elements with the same ID e.g. in a list "cell"?
 
             var element = Query(marked).FirstOrDefault();
+
+            if (InvokeTapGestureRecognisers(element))
+                return;
+
             switch (element)
             {
                 case Button b:
@@ -69,7 +71,7 @@ namespace XF.Headless
                     break;
 
                 default:
-                    throw new InvalidOperationException($"Element marked '{marked}' is not tappable.");
+                    throw new NotSupportedException($"Element marked '{marked}' is not tappable; {element.GetType().Name} is not supported.");
             }
         }
 
@@ -88,6 +90,25 @@ namespace XF.Headless
                 return GetCurrentPage(pc.CurrentPage);
 
             return page;
+        }
+
+        private bool InvokeTapGestureRecognisers(Element element)
+        {
+            bool invoked = false;
+
+            if (element is View view)
+            {
+                var tgrs = view.GestureRecognizers.OfType<TapGestureRecognizer>();
+                if (tgrs.Any())
+                {
+                    foreach (var tgr in tgrs)
+                        tgr.SendTapped(view);
+
+                    invoked = true;
+                }
+            }
+
+            return invoked;
         }
 
         private void InvokeCommand(string marked, ICommand command, object commandParameter)

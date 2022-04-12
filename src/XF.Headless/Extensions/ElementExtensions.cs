@@ -9,8 +9,6 @@ namespace XF.Headless.Extensions
             if (element.AutomationId == marked)
                 return true;
 
-            // TODO: Handle when element is 'Page' and 'Title' matches 'marked'
-
             return element switch
             {
                 Button b => b.Text == marked,
