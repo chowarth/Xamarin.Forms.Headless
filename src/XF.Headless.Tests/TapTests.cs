@@ -11,8 +11,7 @@ namespace XF.Headless.Tests
         [Fact]
         public void Tap_ElementCommandIsNull_ThrowsInvalidOperationException()
         {
-            var app = HeadlessAppBuilder.Create()
-                .ForApplication(() => new SampleApp.App())
+            var app = HeadlessAppBuilder.Create(() => new SampleApp.App())
                 .Build();
             string marked = "TestButtonAutomationId";
 

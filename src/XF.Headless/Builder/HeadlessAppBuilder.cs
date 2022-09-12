@@ -1,31 +1,28 @@
 ﻿using System;
 using Xamarin.Forms;
-using XF.Headless.Helpers;
 
 namespace XF.Headless
 {
-    public sealed class HeadlessAppBuilder : IApplicationSetup, IBuild
+    public sealed class HeadlessAppBuilder : IBuild
     {
-        private Func<Application> _appProvider;
+        private readonly Func<Application> _appProvider;
 
-        private HeadlessAppBuilder() { }
+        private HeadlessAppBuilder(Func<Application> appProvider)
+        {
+            _appProvider = appProvider;
+        }
 
         /// <summary>
         /// Creates a new instance of <see cref="HeadlessAppBuilder"/>
         /// </summary>
+        /// <param name="appProvider">Delegate to provide an instance of a Xamarin.Forms application</param>
         /// <returns></returns>
-        public static IApplicationSetup Create()
-        {
-            return new HeadlessAppBuilder();
-        }
-
-        /// <inheritdoc/>
-        public IBuild ForApplication(Func<Application> appProvider)
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="appProvider"/> is <see langword="null"/></exception>
+        public static IBuild Create(Func<Application> appProvider)
         {
             ArgumentNullException.ThrowIfNull(appProvider);
 
-            _appProvider = appProvider;
-            return this;
+            return new HeadlessAppBuilder(appProvider);
         }
 
         /// <inheritdoc/>

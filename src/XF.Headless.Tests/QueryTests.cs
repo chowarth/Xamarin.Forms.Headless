@@ -10,8 +10,7 @@ namespace XF.Headless.Tests
         public void Query_ByAutomationId_ReturnsMultipleResults()
         {
             // Arrange
-            var app = HeadlessAppBuilder.Create()
-                .ForApplication(() => new SampleApp.App())
+            var app = HeadlessAppBuilder.Create(() => new SampleApp.App())
                 .Build();
             app.Tap("Query Page");
 
@@ -26,8 +25,7 @@ namespace XF.Headless.Tests
         public void Query_ByText_ReturnsSingleResult()
         {
             // Arrange
-            var app = HeadlessAppBuilder.Create()
-                .ForApplication(() => new SampleApp.App())
+            var app = HeadlessAppBuilder.Create(() => new SampleApp.App())
                 .Build();
             app.Tap("Query Page");
 
@@ -42,8 +40,7 @@ namespace XF.Headless.Tests
         public void Query_ParentIsVisibleFalse_ReturnsNoResults()
         {
             // Arrange
-            var app = HeadlessAppBuilder.Create()
-                .ForApplication(() => new SampleApp.App())
+            var app = HeadlessAppBuilder.Create(() => new SampleApp.App())
                 .Build();
             app.Tap("Query Page");
 
@@ -58,8 +55,7 @@ namespace XF.Headless.Tests
         public void Query_ByFormattedString_ReturnsSingleResult()
         {
             // Arrange
-            var app = HeadlessAppBuilder.Create()
-                .ForApplication(() => new SampleApp.App())
+            var app = HeadlessAppBuilder.Create(() => new SampleApp.App())
                 .Build();
             app.Tap("Query Page");
 
@@ -74,8 +70,7 @@ namespace XF.Headless.Tests
         public void Query_ElementInTitleView_ReturnsSingleResult()
         {
             // Arrange
-            var app = HeadlessAppBuilder.Create()
-                .ForApplication(() => new SampleApp.App())
+            var app = HeadlessAppBuilder.Create(() => new SampleApp.App())
                 .Build();
             app.Tap("Query Page");
 
