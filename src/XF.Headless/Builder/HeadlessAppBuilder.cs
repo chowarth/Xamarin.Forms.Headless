@@ -13,12 +13,12 @@ namespace XF.Headless
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="HeadlessAppBuilder"/>
+        /// Creates a new instance of <see cref="HeadlessAppBuilder"/> for the provided application
         /// </summary>
         /// <param name="appProvider">Delegate to provide an instance of a Xamarin.Forms application</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="appProvider"/> is <see langword="null"/></exception>
-        public static IBuild Create(Func<Application> appProvider)
+        public static IBuild ForApp(Func<Application> appProvider)
         {
             ArgumentNullException.ThrowIfNull(appProvider);
 
