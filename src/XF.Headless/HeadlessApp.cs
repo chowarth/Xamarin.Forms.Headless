@@ -57,7 +57,7 @@ namespace XF.Headless
 
             var element = Query(marked).FirstOrDefault();
 
-            if (InvokeTapGestureRecognisers(element))
+            if (element.InvokeTapGestureRecognisers())
                 return;
 
             switch (element)
@@ -90,25 +90,6 @@ namespace XF.Headless
                 return GetCurrentPage(pc.CurrentPage);
 
             return page;
-        }
-
-        private bool InvokeTapGestureRecognisers(Element element)
-        {
-            bool invoked = false;
-
-            if (element is View view)
-            {
-                var tgrs = view.GestureRecognizers.OfType<TapGestureRecognizer>();
-                if (tgrs.Any())
-                {
-                    foreach (var tgr in tgrs)
-                        tgr.SendTapped(view);
-
-                    invoked = true;
-                }
-            }
-
-            return invoked;
         }
 
         private void InvokeCommand(string marked, ICommand command, object commandParameter)
