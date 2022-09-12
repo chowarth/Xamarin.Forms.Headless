@@ -9,7 +9,7 @@ namespace XF.Headless.Tests
         [Fact]
         public void Query_ByAutomationId_ReturnsMultipleResults()
         {
-            // Arrage
+            // Arrange
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
                 .Build();
@@ -25,7 +25,7 @@ namespace XF.Headless.Tests
         [Fact]
         public void Query_ByText_ReturnsSingleResult()
         {
-            // Arrage
+            // Arrange
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
                 .Build();
@@ -41,7 +41,7 @@ namespace XF.Headless.Tests
         [Fact]
         public void Query_ParentIsVisibleFalse_ReturnsNoResults()
         {
-            // Arrage
+            // Arrange
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
                 .Build();
@@ -57,7 +57,7 @@ namespace XF.Headless.Tests
         [Fact]
         public void Query_ByFormattedString_ReturnsSingleResult()
         {
-            // Arrage
+            // Arrange
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
                 .Build();
@@ -73,7 +73,7 @@ namespace XF.Headless.Tests
         [Fact]
         public void Query_ElementInTitleView_ReturnsSingleResult()
         {
-            // Arrage
+            // Arrange
             var app = HeadlessAppBuilder.Create()
                 .ForApplication(() => new SampleApp.App())
                 .Build();
