@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using Xamarin.CommunityToolkit.Markup;
 
 namespace XF.Headless.SampleApp.Pages
 {
@@ -53,17 +54,9 @@ namespace XF.Headless.SampleApp.Pages
                         Text = "This label is not visible",
                         IsVisible = false
                     },
-                    new Label
-                    {
-                        FormattedText = new FormattedString()
-                        {
-                            Spans =
-                            {
-                                new Span { Text = "Learn more at " },
-                                new Span { Text = "https://aka.ms/xamarin-quickstart", FontAttributes = FontAttributes.Bold }
-                            }
-                        }
-                    }
+                    new Label()
+                        .FormattedText( new Span { Text = "Learn more at " },
+                                        new Span { Text = "https://aka.ms/xamarin-quickstart", FontAttributes = FontAttributes.Bold })
                 }
             };
         }
