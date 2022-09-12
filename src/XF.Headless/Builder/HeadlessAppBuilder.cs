@@ -22,7 +22,7 @@ namespace XF.Headless
         /// <inheritdoc/>
         public IBuild ForApplication(Func<Application> appProvider)
         {
-            appProvider.ThrowIfNull(nameof(appProvider));
+            ArgumentNullException.ThrowIfNull(appProvider);
 
             _appProvider = appProvider;
             return this;
