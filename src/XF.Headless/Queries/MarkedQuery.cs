@@ -24,7 +24,7 @@ namespace XF.Headless.Queries
         {
             ArgumentNullException.ThrowIfNull(identifier);
 
-            var queryResult = Element.QueryInternal(e => e.Marked(identifier))
+            var queryResult = Element.FindInternal(e => e.Marked(identifier))
                 .FirstOrDefault();
             // TODO: Handle no results
                 // ElementNotFoundException?

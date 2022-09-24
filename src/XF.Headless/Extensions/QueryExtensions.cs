@@ -9,7 +9,7 @@ namespace XF.Headless.Extensions
     {
         internal static IEnumerable<Element> Empty = Enumerable.Empty<Element>();
 
-        internal static List<Element> QueryInternal(this Element element, Predicate<Element> predicate)
+        internal static List<Element> FindInternal(this Element element, Predicate<Element> predicate)
         {
             List<Element> results = new List<Element>();
 
@@ -28,28 +28,28 @@ namespace XF.Headless.Extensions
                     {
                         var titleView = NavigationPage.GetTitleView(element);
                         if (titleView is not null)
-                            results.AddRange(titleView.QueryInternal(predicate));
+                            results.AddRange(titleView.FindInternal(predicate));
                     }
 
-                    results.AddRange(cp.Content?.QueryInternal(predicate) ?? Empty);
+                    results.AddRange(cp.Content?.FindInternal(predicate) ?? Empty);
                     break;
 
                 // StackLayout, Grid, FlexLayout, AbsoluteLayout
                 case Layout<View> lv:
-                    results.AddRange(lv.Children.SelectMany(c => c.QueryInternal(predicate)));
+                    results.AddRange(lv.Children.SelectMany(c => c.FindInternal(predicate)));
                     break;
 
                 // Frame, ContentView
                 case ContentView cv:
-                    results.AddRange(cv.Content?.QueryInternal(predicate) ?? Empty);
+                    results.AddRange(cv.Content?.FindInternal(predicate) ?? Empty);
                     break;
 
                 case ScrollView sv:
-                    results.AddRange(sv.Content?.QueryInternal(predicate) ?? Empty);
+                    results.AddRange(sv.Content?.FindInternal(predicate) ?? Empty);
                     break;
 
                 case ViewCell vc:
-                    results.AddRange(vc.View?.QueryInternal(predicate) ?? Empty);
+                    results.AddRange(vc.View?.FindInternal(predicate) ?? Empty);
                     break;
 
                 default:
