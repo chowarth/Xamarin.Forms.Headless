@@ -1,19 +1,15 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Linq;
 using Xamarin.Forms;
 using XF.Headless.Extensions;
 
 namespace XF.Headless.Queries
 {
-    public sealed class MarkedQuery : IElementQuery
+    public sealed class MarkedQuery : BaseElementQuery
     {
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Element Element { get; }
-
         internal MarkedQuery(Element element)
+            : base(element)
         {
-            Element = element;
         }
 
         /// <summary>

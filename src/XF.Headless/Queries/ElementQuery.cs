@@ -2,7 +2,7 @@
 
 namespace XF.Headless.Queries
 {
-    public sealed class ElementQuery : IElementQuery
+    public sealed class ElementQuery : BaseElementQuery
     {
         /*
         - ElementQuery: Used to find elements based on "marked"
@@ -23,11 +23,10 @@ namespace XF.Headless.Queries
                     - Would is simply be checking the element that the other methods (Parent, Sibling, & Child) filtered to see if it matches?
                     - Would this even be needed based on the result of the other methods?
         */
-        public Element Element { get; }
 
         internal ElementQuery(Element element)
+            : base(element)
         {
-            Element = element;
         }
 
         public ElementQuery Parent(int index = 0)
