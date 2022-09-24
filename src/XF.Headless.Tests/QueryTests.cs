@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xunit;
 
 namespace XF.Headless.Tests
@@ -15,10 +14,12 @@ namespace XF.Headless.Tests
             app.Tap("Query Page");
 
             // Act
-            IReadOnlyList<Element> results = app.Query("TestAutomationId");
+            Element result = app.Query("TestAutomationId");
 
             // Assert
-            Assert.Equal(2, results.Count);
+            Assert.NotNull(result);
+            Assert.IsType<Label>(result);
+            Assert.Equal("Start developing now", (result as Label)?.Text);
         }
 
         [Fact]
@@ -30,10 +31,11 @@ namespace XF.Headless.Tests
             app.Tap("Query Page");
 
             // Act
-            IReadOnlyList<Element> results = app.Query("Welcome to Xamarin.Forms!");
+            Element result = app.Query("Welcome to Xamarin.Forms!");
 
             // Assert
-            Assert.Equal(1, results.Count);
+            Assert.NotNull(result);
+            Assert.IsType<Label>(result);
         }
 
         [Fact]
@@ -45,10 +47,10 @@ namespace XF.Headless.Tests
             app.Tap("Query Page");
 
             // Act
-            IReadOnlyList<Element> results = app.Query("This label should not be found!");
+            Element result = app.Query("This label should not be found!");
 
             // Assert
-            Assert.Empty(results);
+            Assert.Null(result);
         }
 
         [Fact]
@@ -60,10 +62,10 @@ namespace XF.Headless.Tests
             app.Tap("Query Page");
 
             // Act
-            IReadOnlyList<Element> results = app.Query("Learn more at https://aka.ms/xamarin-quickstart");
+            Element result = app.Query("Learn more at https://aka.ms/xamarin-quickstart");
 
             // Assert
-            Assert.Equal(1, results.Count);
+            Assert.NotNull(result);
         }
 
         [Fact]
@@ -75,10 +77,12 @@ namespace XF.Headless.Tests
             app.Tap("Query Page");
 
             // Act
-            IReadOnlyList<Element> results = app.Query("TitleViewLabel");
+            Element result = app.Query("TitleViewLabelId");
 
             // Assert
-            Assert.Equal(1, results.Count);
+            Assert.NotNull(result);
+            Assert.IsType<Label>(result);
+            Assert.Equal("TitleViewLabel", (result as Label)?.Text);
         }
     }
 }

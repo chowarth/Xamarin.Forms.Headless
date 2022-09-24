@@ -1,5 +1,5 @@
-﻿using Xamarin.Forms;
-using Xamarin.CommunityToolkit.Markup;
+﻿using Xamarin.CommunityToolkit.Markup;
+using Xamarin.Forms;
 
 namespace XF.Headless.SampleApp.Pages
 {

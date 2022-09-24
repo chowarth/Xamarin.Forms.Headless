@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Xamarin.Forms;
+using XF.Headless.Queries;
 
 namespace XF.Headless
 {
@@ -21,16 +22,25 @@ namespace XF.Headless
         void OnResume();
 
         /// <summary>
-        /// Queries the current <see cref="Application.MainPage"/> view hierarchy for elements that match the supplied
-        /// <paramref name="marked"/> value. <paramref name="marked"/> will be matched against <c>AutomationId</c> first
-        /// then, depending on the element, <c>Title, Text, FormattedText, Placeholder</c>.
+        /// Queries the current view hierarchy for an element that matches the supplied <paramref name="marked"/> value.
+        /// Elements will be matched against <c>AutomationId</c> first, then depending on the element, <c>Title, Text, FormattedText, Placeholder</c>.
         /// </summary>
         /// <remarks>
         /// Only visible elements will be returned.
         /// </remarks>
         /// <param name="marked">The value to match</param>
-        /// <returns>A read-only list representing the matched elements</returns>
-        IReadOnlyList<Element> Query(string marked);
+        /// <returns>The first element that matches <paramref name="marked"/>.</returns>
+        Element Query(string marked);
+
+        /// <summary>
+        /// Queries the current view hierarchy for an element that matches the supplied <paramref name="query"/>.
+        /// </summary>
+        /// <remarks>
+        /// Only visible elements will be returned.
+        /// </remarks>
+        /// <param name="query"></param>
+        /// <returns>The first element matched by <paramref name="query"/>.</returns>
+        Element Query(Func<IMarkedQuery, ElementQuery> query);
 
         /// <summary>
         /// Taps the first element found that matches the supplied <paramref name="marked"/> value.
@@ -40,6 +50,6 @@ namespace XF.Headless
         /// </remarks>
         /// <exception cref="System.InvalidOperationException">Thrown when the tappable element command is null</exception>
         /// <param name="marked">The value to match</param>
-        public void Tap(string marked);
+        void Tap(string marked);
     }
 }

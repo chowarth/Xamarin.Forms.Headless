@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Mocks;
 using XF.Headless.Extensions;
+using XF.Headless.Queries;
 
 namespace XF.Headless
 {
@@ -40,12 +40,22 @@ namespace XF.Headless
         }
 
         /// <inheritdoc/>
-        public IReadOnlyList<Element> Query(string marked)
+        public Element Query(string marked)
         {
             ArgumentNullException.ThrowIfNull(marked);
 
+            return Query(x => x.Marked(marked));
+        }
+
+        /// <inheritdoc/>
+        public Element Query(Func<IMarkedQuery, ElementQuery> query)
+        {
             var top = _app.MainPage.Navigation.ModalStack.LastOrDefault() ?? _app.MainPage;
-            return GetCurrentPage(top).QueryInternal(e => e.Marked(marked));
+            var page = GetCurrentPage(top);
+
+            var queryResult = query.Invoke(new ElementQuery(page));
+
+            return queryResult.Element;
         }
 
         /// <inheritdoc/>
@@ -54,8 +64,8 @@ namespace XF.Headless
             // TODO: Alert dialogs/pickers etc
             // TODO: If nothing is found, throw exception?
             // TODO: How to handle multiple elements with the same ID e.g. in a list "cell"?
-
-            var element = Query(marked).FirstOrDefault();
+                // Have an overload that uses ElementQuery similar to Query above
+            var element = Query(marked);
 
             if (element.InvokeTapGestureRecognisers())
                 return;
