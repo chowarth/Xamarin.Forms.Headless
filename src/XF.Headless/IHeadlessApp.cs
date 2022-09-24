@@ -22,18 +22,18 @@ namespace XF.Headless
         void OnResume();
 
         /// <summary>
-        /// Queries the current view hierarchy for an element that matches the supplied <paramref name="marked"/> value.
+        /// Queries the current view hierarchy for an element that matches the <paramref name="marked"/> value.
         /// Elements will be matched against <c>AutomationId</c> first, then depending on the element, <c>Title, Text, FormattedText, Placeholder</c>.
         /// </summary>
         /// <remarks>
         /// Only visible elements will be returned.
         /// </remarks>
-        /// <param name="marked">The value to match</param>
+        /// <param name="marked">The value to match.</param>
         /// <returns>The first element that matches <paramref name="marked"/>.</returns>
         Element Query(string marked);
 
         /// <summary>
-        /// Queries the current view hierarchy for an element that matches the supplied <paramref name="query"/>.
+        /// Queries the current view hierarchy for an element that matches the <paramref name="query"/>.
         /// </summary>
         /// <remarks>
         /// Only visible elements will be returned.
@@ -43,7 +43,7 @@ namespace XF.Headless
         Element Query(Func<MarkedQuery, ElementQuery> query);
 
         /// <summary>
-        /// Taps the first element found that matches the supplied <paramref name="marked"/> value.
+        /// Taps the first element found that matches the <paramref name="marked"/> value.
         /// </summary>
         /// <remarks>
         /// Only visible elements can be tapped.

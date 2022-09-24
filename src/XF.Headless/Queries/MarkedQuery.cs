@@ -13,13 +13,15 @@ namespace XF.Headless.Queries
         }
 
         /// <summary>
-        /// Queries the current view hierarchy for an element that matches the supplied <paramref name="marked"/> value.
+        /// Finds an element that matches the <paramref name="marked"/> value.
         /// Elements will be matched against <c>AutomationId</c> first, then depending on the element, <c>Title, Text, FormattedText, Placeholder</c>.
         /// </summary>
         /// <remarks>
         /// Only visible elements will be matched.
         /// </remarks>
-        /// <param name="marked">The value to match</param>
+        /// <param name="marked">The value to match.</param>
+        /// <returns>A new <see cref="ElementQuery"/> based on the first element that matches <paramref name="marked"/>.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="identifier"/> is null.</exception>
         public ElementQuery Marked(string identifier)
         {
             ArgumentNullException.ThrowIfNull(identifier);

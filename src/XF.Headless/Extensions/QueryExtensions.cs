@@ -9,6 +9,12 @@ namespace XF.Headless.Extensions
     {
         internal static IEnumerable<Element> Empty = Enumerable.Empty<Element>();
 
+        /// <summary>
+        /// Finds an element that matches the provided <paramref name="predicate"/>.
+        /// </summary>
+        /// <param name="element">The root element.</param>
+        /// <param name="predicate">The predicate to match the element against.</param>
+        /// <returns>A list of elements that match the provided <paramref name="predicate"/>.</returns>
         internal static List<Element> FindInternal(this Element element, Predicate<Element> predicate)
         {
             List<Element> results = new List<Element>();
