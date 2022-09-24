@@ -40,7 +40,7 @@ namespace XF.Headless
         /// </remarks>
         /// <param name="query"></param>
         /// <returns>The first element matched by <paramref name="query"/>.</returns>
-        Element Query(Func<IMarkedQuery, ElementQuery> query);
+        Element Query(Func<MarkedQuery, ElementQuery> query);
 
         /// <summary>
         /// Taps the first element found that matches the supplied <paramref name="marked"/> value.

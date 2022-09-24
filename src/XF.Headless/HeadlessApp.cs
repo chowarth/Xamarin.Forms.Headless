@@ -48,12 +48,12 @@ namespace XF.Headless
         }
 
         /// <inheritdoc/>
-        public Element Query(Func<IMarkedQuery, ElementQuery> query)
+        public Element Query(Func<MarkedQuery, ElementQuery> query)
         {
             var top = _app.MainPage.Navigation.ModalStack.LastOrDefault() ?? _app.MainPage;
             var page = GetCurrentPage(top);
 
-            var queryResult = query.Invoke(new ElementQuery(page));
+            var queryResult = query.Invoke(new MarkedQuery(page));
 
             return queryResult.Element;
         }
