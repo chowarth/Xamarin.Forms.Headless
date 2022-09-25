@@ -21,12 +21,15 @@ namespace XF.Headless.Queries
         /// </remarks>
         /// <param name="marked">The value to match.</param>
         /// <returns>A new <see cref="ElementQuery"/> based on the first element that matches <paramref name="marked"/>.</returns>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="identifier"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="identifier"/> is <see langword="null"/>.</exception>
         public ElementQuery Marked(string identifier)
         {
             ArgumentNullException.ThrowIfNull(identifier);
 
-            var queryResult = Element.FindInternal(e => e.Marked(identifier))
+            if (string.IsNullOrWhiteSpace(identifier))
+                throw new ArgumentException("Marked identifier cannot be empty.", nameof(identifier));
+
+            var result = Element.FindInternal(e => e.Marked(identifier))
                 .FirstOrDefault();
             // TODO: Handle no results
                 // ElementNotFoundException?
@@ -34,7 +37,7 @@ namespace XF.Headless.Queries
                 // Should it match the first fround result? Yes.
                 // Should we only ever return a single result? Yes.
 
-            return new ElementQuery(queryResult);
+            return new ElementQuery(result);
         }
     }
 }

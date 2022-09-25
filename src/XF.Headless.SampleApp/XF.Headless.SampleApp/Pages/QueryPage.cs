@@ -38,6 +38,10 @@ namespace XF.Headless.SampleApp.Pages
                         IsVisible = false,
                         Content = new Label { Text = "This label should not be found!" }
                     },
+                    new Button()
+                    {
+                        AutomationId = "TestButtonAutomationId"
+                    },
                     new Label
                     {
                         AutomationId = "TestAutomationId",
