@@ -14,7 +14,7 @@ namespace XF.Headless.SampleApp.Pages
                 HorizontalOptions = LayoutOptions.Center,
                 Children =
                 {
-                    new Button() { AutomationId = "TestButtonAutomationId" },
+                    new Button() { Text = "No command" },
                     new Button()
                     {
                         Text = "Query Page",

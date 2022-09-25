@@ -36,7 +36,7 @@ namespace XF.Headless.Queries
             // TODO:
             // What to do if index take us to a parent outside of this page?
             // What if current.Parent is null?
-                // IndexOutOfRangeException?
+                // IndexOutOfRangeException or InvalidOperationException?
                 // e.g. If 0 would be StackLayout, 1 would be the Page itself, 2 would be the NavigationPage/TabbedPage/App
             while (index > 0)
             {

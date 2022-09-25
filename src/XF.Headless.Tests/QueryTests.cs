@@ -6,7 +6,7 @@ namespace XF.Headless.Tests
     public class QueryTests
     {
         [Fact]
-        public void Query_ByAutomationId_ReturnsMultipleResults()
+        public void Query_ByAutomationId_ReturnsLabel()
         {
             // Arrange
             var app = HeadlessAppBuilder.ForApp(() => new SampleApp.App())
@@ -23,7 +23,7 @@ namespace XF.Headless.Tests
         }
 
         [Fact]
-        public void Query_ByText_ReturnsSingleResult()
+        public void Query_ByText_ReturnsLabel()
         {
             // Arrange
             var app = HeadlessAppBuilder.ForApp(() => new SampleApp.App())
@@ -54,7 +54,7 @@ namespace XF.Headless.Tests
         }
 
         [Fact]
-        public void Query_ByFormattedString_ReturnsSingleResult()
+        public void Query_ByFormattedString_ReturnsLabel()
         {
             // Arrange
             var app = HeadlessAppBuilder.ForApp(() => new SampleApp.App())
@@ -66,10 +66,11 @@ namespace XF.Headless.Tests
 
             // Assert
             Assert.NotNull(result);
+            Assert.IsType<Label>(result);
         }
 
         [Fact]
-        public void Query_ElementInTitleView_ReturnsSingleResult()
+        public void Query_ElementInTitleView_ReturnsLabel()
         {
             // Arrange
             var app = HeadlessAppBuilder.ForApp(() => new SampleApp.App())

@@ -13,7 +13,7 @@ namespace XF.Headless.Tests
         {
             var app = HeadlessAppBuilder.ForApp(() => new SampleApp.App())
                 .Build();
-            string marked = "TestButtonAutomationId";
+            string marked = "No command";
 
             Action action = () => app.Tap(marked);
 
