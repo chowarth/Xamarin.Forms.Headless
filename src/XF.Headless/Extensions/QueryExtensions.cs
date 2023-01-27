@@ -13,7 +13,6 @@ namespace XF.Headless.Extensions
         {
             List<Element> results = new List<Element>();
 
-
             // Don't need do anything if the element isn't visible
             if (element is VisualElement ve && !ve.IsVisible)
                 return results;

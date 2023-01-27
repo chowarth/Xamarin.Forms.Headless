@@ -45,7 +45,7 @@ namespace XF.Headless
             ArgumentNullException.ThrowIfNull(marked);
 
             var top = _app.MainPage.Navigation.ModalStack.LastOrDefault() ?? _app.MainPage;
-            return GetCurrentPage(top).QueryInternal(e => e.Marked(marked));
+            return top.GetCurrentPage().QueryInternal(e => e.Marked(marked));
         }
 
         /// <inheritdoc/>
@@ -73,23 +73,6 @@ namespace XF.Headless
                 default:
                     throw new NotSupportedException($"Element marked '{marked}' is not tappable; {element.GetType().Name} is not supported.");
             }
-        }
-
-        private Page GetCurrentPage(Page page)
-        {
-            if (page is FlyoutPage fp)
-            {
-                if (fp.IsPresented)
-                    return GetCurrentPage(fp.Flyout);
-                else
-                    return GetCurrentPage(fp.Detail);
-            }
-
-            // TabbedPage & NavigationPage
-            if (page is IPageContainer<Page> pc)
-                return GetCurrentPage(pc.CurrentPage);
-
-            return page;
         }
 
         private void InvokeCommand(string marked, ICommand command, object commandParameter)
